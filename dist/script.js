@@ -1,8 +1,36 @@
 //DOM STRINGS OBJECT
 const DOM = {
-  date: document.querySelectorAll('.timeline__date'),
+  timelineDate: document.querySelectorAll('.timeline__date'),
+  timelineElem: document.querySelectorAll('.timeline__elem'),
   timelineBar: document.querySelector('.timeline__bar') };
 
+
+//TIMELINE ELEM SET DIRECTION TO EVENT ITEMS (left or right oriented)
+
+//getting direction from .timeline-elem
+const __getDir = timelineElem => {
+
+  if (timelineElem.classList.contains('timeline__elem--left')) {
+    return 'left';
+  } else if (timelineElem.classList.contains('timeline__elem--right')) {
+    return 'right';
+  }
+
+};
+
+const setDirEvent = () => {
+
+  DOM.timelineElem.forEach(elem => {
+
+    const direction = __getDir(elem);
+
+    const timelineEvent = elem.querySelector('.timeline__event');
+
+    timelineEvent.classList.add(`timeline__event--${direction}`);
+
+  });
+
+};
 
 //TIMELINE ELEM DATE STYLES (background)
 const __getBGImage = () => {
@@ -39,7 +67,7 @@ const setDateBG = () => {
 
   const bgHeight = __getBGSize_height();
 
-  DOM.date.forEach(elem => {
+  DOM.timelineDate.forEach(elem => {
 
     //setting bgImage
     elem.style.backgroundImage = bgImg;
@@ -58,6 +86,9 @@ const setDateBG = () => {
 
 //ONLOAD FUNCTION
 window.addEventListener('load', () => {
+
+  //setting direction class to the timeline event block
+  setDirEvent();
 
   //set date background styles
   setDateBG();

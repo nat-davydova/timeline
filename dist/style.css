@@ -48,7 +48,8 @@ body a {
 }
 
 .content {
-  max-width: 700px;
+  max-width: 800px;
+  width: 95%;
   margin: 0 auto 40px;
 }
 
@@ -63,6 +64,7 @@ body a {
   position: relative;
   min-height: 500px;
   width: 100%;
+  padding: 60px 0;
 }
 
 .timeline__bar {
@@ -87,16 +89,22 @@ body a {
   border-radius: 50%;
 }
 .timeline__bar:before {
-  top: 0;
+  top: -1px;
   background-color: #ffce79;
 }
 .timeline__bar:after {
-  bottom: 0;
+  bottom: -1px;
   background-color: #9b74ff;
 }
 
 .timeline__elem {
   position: relative;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.timeline__elem--right {
+  justify-content: flex-end;
 }
 
 .timeline__date {
@@ -110,8 +118,8 @@ body a {
   width: 70px;
   height: 70px;
   color: #fff;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background-repeat: no-repeat;
   border-radius: 50%;
   border: 6px solid #fff;
@@ -127,5 +135,47 @@ body a {
 }
 
 .timeline__event {
-  width: 45%;
+  position: relative;
+  width: calc((100% - 70px - 8px * 4) / 2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.timeline__event:before {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 0;
+  height: 0;
+  content: '';
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.timeline__event:after {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 16px;
+  height: 16px;
+  content: '';
+  -webkit-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+}
+
+.timeline__event--left:before {
+  right: -8px;
+  border-left: 8px solid #fff;
+}
+.timeline__event--left:after {
+  right: -7px;
+  box-shadow: 2px -1px 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.timeline__event--right:before {
+  left: -8px;
+  border-right: 8px solid #fff;
+}
+.timeline__event--right:after {
+  left: -7px;
+  box-shadow: -2px 2px 1px 0 rgba(0, 0, 0, 0.08);
 }

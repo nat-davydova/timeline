@@ -1,0 +1,366 @@
+//mixins
+@mixin transition-mix ($property: all, $duration: 0.2s, $timing: linear, $delay: 0s) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}
+
+@mixin position-absolute ($top: null, $left: null, $right: null, $bottom: null) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+//variables
+$theme-font-color: #2c2c2c;
+
+//common styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: {
+    family: 'Montserrat', sans-serif;
+    size: 16px;
+  }
+  color: $theme-font-color;
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.btn {
+  @include transition-mix;
+  
+  padding: 10px 20px;
+  display: inline-block;
+  margin-right: 10px;
+  
+  background-color: #fff;
+  border: 1px solid $theme-font-color;
+  border-radius: 3px;
+  
+  cursor: pointer;
+  
+  outline: none;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+  
+  &:hover,
+  &.js-active{
+    color: #fff;
+    
+    background-color: $theme-font-color;
+  }
+}
+
+//header styles
+.header {
+  max-width: 500px;
+  margin: 50px auto;
+  
+  text-align: center;
+}
+
+.header__title {
+  margin-bottom: 30px;
+  
+  font: {
+    weight: 600;
+  }
+}
+
+//content styles
+.content {
+  max-width: 800px;
+  width: 95%;
+  margin: 0 auto 40px;
+}
+
+.content__title {
+  margin-bottom: 40px;
+  
+  font: {
+    size: 18px;
+    weight: 600;
+  }
+  text-align: center;
+}
+
+//timeline styles
+$tablet-width: 900px;
+$mobile-width: 560px;
+
+$timeline-bar-bg-start: #ffce79;
+$timeline-bar-bg-end: #9b74ff;
+$timeline-bar-width: 6px;
+
+.timeline {
+  position: relative;
+  
+  min-height: 500px;
+  width: 100%;
+  padding: 60px 0;
+}
+
+.timeline__bar {
+  @include position-absolute($top: 0, $left: 50%);
+  
+  width: $timeline-bar-width;
+  height: 100%;
+  
+  transform: translateX(-50%);
+  
+  background-image: linear-gradient($timeline-bar-bg-start, $timeline-bar-bg-end);
+  
+  //decorations
+  &:before,
+  &:after {
+    @include position-absolute($left: 50%);
+    
+    display: block;
+    width: $timeline-bar-width + 6;
+    height: $timeline-bar-width + 6;
+    
+    content: '';
+    
+    transform: translateX(-50%);
+    
+    border-radius: 50%;
+  }
+  
+  &:before {
+    top: -1px;
+    
+    background-color: $timeline-bar-bg-start;
+  }
+  
+  &:after {
+    bottom: -1px;
+    
+    background-color: $timeline-bar-bg-end;
+  }
+}
+
+.timeline__elem {
+  position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+  }
+}
+
+.timeline__elem--right {
+  
+   @media (min-width: $tablet-width) {
+    justify-content: flex-end;
+  }
+}
+
+$timeline-date-dimensions: 70px;
+
+.timeline__date { 
+  position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: $timeline-date-dimensions;
+  height: $timeline-date-dimensions;
+  margin: auto;
+  
+  color: #fff;
+  
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  
+  @media (min-width: $tablet-width) {
+     @include position-absolute($top: 50%, $left: 50%);
+    
+    transform: translate(-50%, -50%);
+  }
+}
+
+.timeline__date-day {
+  font: {
+    size: 1.35rem;
+    weight: 600;
+  }
+}
+
+.timeline__date-month {
+  font: {
+    size: .85rem;
+  }
+}
+
+$timeline-event-decor-dimensions: 8px;
+
+.timeline__event {
+  position: relative;
+  
+  width: 90%;
+  margin: 30px auto 0;
+
+ box-shadow: 
+    0 2px 2px 0 rgba(0,0,0,0.14), 
+    0 3px 1px -2px rgba(0,0,0,0.12), 
+    0 1px 5px 0 rgba(0,0,0,0.2);
+  
+  background-color: #fff;
+  
+  @media (min-width: $mobile-width) {
+    width: 65%;
+  }
+
+  @media (min-width: $tablet-width) {
+      width: calc((100% - #{$timeline-date-dimensions} - #{$timeline-event-decor-dimensions} * 4) / 2);
+     margin: 0;
+  }
+
+  //triangle decoration
+  &:before {
+    @include position-absolute($top: 50%);
+    
+    display: none;
+    width: 0;
+    height: 0;
+    
+    content: '';
+    
+    transform: translateY(-50%);
+    
+    border-top: $timeline-event-decor-dimensions solid transparent;
+    border-bottom: $timeline-event-decor-dimensions solid transparent;
+  }
+
+  //decoration boxshadow
+  &:after {
+    @include position-absolute($top: 50%);
+    
+    display: none;
+    width: ($timeline-event-decor-dimensions * 2);
+    height: ($timeline-event-decor-dimensions * 2);;
+    
+    content: '';
+    
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  @media (min-width: $tablet-width) {
+
+    &:before,
+    &:after {
+      display: block;
+    }
+  }
+}
+
+.timeline__event--left {
+  
+  &:before {
+    right: (- $timeline-event-decor-dimensions);
+    
+    border-left: $timeline-event-decor-dimensions solid #fff;
+  }
+  
+  &:after {
+    right: - $timeline-event-decor-dimensions + 1;
+    
+    box-shadow: 2px -1px 1px 0 rgba(0,0,0,0.08);
+  }
+}
+
+.timeline__event--right {
+  
+  &:before {
+    left: - $timeline-event-decor-dimensions;
+    
+    border-right: $timeline-event-decor-dimensions solid #fff;
+  }
+  
+  &:after {
+    left: (- $timeline-event-decor-dimensions + 1);
+    
+    box-shadow: -2px 2px 1px 0 rgba(0,0,0,0.08);
+  }
+}
+
+$timeline-padding-horz: 15px;
+$timeline-padding-vert: 20px;
+
+.timeline__event-date-time {
+  padding: $timeline-padding-vert $timeline-padding-horz 0;
+  
+  display: flex;
+  margin-bottom: 15px;
+  
+  font: {
+    size: .8rem;
+  }
+  color: rgba($theme-font-color, .7);
+}
+
+.timeline__event-date {
+  margin-right: 10px;
+}
+
+.timeline__event-title {
+  padding: 0 $timeline-padding-horz;
+  margin-bottom: 15px;
+  
+  font: {
+    size: 1.25rem;
+    weight: 600;
+  }
+}
+
+.timeline__event-descr {
+  padding: 0 $timeline-padding-horz $timeline-padding-vert;
+  
+  font: {
+    size: .9rem;
+  }
+  line-height: 1rem;
+}
+
+.timeline__event-actions {
+  padding: $timeline-padding-vert $timeline-padding-horz;
+  
+  border-top: 1px solid rgba(160,160,160,0.2);
+}
+
+.timeline__event-action {
+  @include transition-mix();
+  
+  margin-right: 24px;
+  
+  font: {
+    size: .9rem;
+  }
+  text-transform: uppercase;
+  
+  &:hover {
+    opacity: .4;
+  }
+}

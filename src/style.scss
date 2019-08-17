@@ -102,12 +102,21 @@ $timeline-bar-bg-start: #ffce79;
 $timeline-bar-bg-end: #9b74ff;
 $timeline-bar-width: 6px;
 
-.timeline__bar {
+.timeline {
   position: relative;
   
   min-height: 500px;
+  
+  width: 100%;
+}
+
+.timeline__bar {
+  @include position-absolute($top: 0, $left: 50%);
+  
   width: $timeline-bar-width;
-  margin: auto;
+  height: 100%;
+  
+  transform: translateX(-50%);
   
   background-image: linear-gradient(to bottom, $timeline-bar-bg-start, $timeline-bar-bg-end);
   

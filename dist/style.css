@@ -59,11 +59,20 @@ body a {
   text-align: center;
 }
 
-.timeline__bar {
+.timeline {
   position: relative;
   min-height: 500px;
+  width: 100%;
+}
+
+.timeline__bar {
+  position: absolute;
+  top: 0;
+  left: 50%;
   width: 6px;
-  margin: auto;
+  height: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background-image: linear-gradient(to bottom, #ffce79, #9b74ff);
 }
 .timeline__bar:before, .timeline__bar:after {

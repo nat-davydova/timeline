@@ -106,7 +106,6 @@ $timeline-bar-width: 6px;
   position: relative;
   
   min-height: 500px;
-  
   width: 100%;
 }
 
@@ -118,7 +117,7 @@ $timeline-bar-width: 6px;
   
   transform: translateX(-50%);
   
-  background-image: linear-gradient(to bottom, $timeline-bar-bg-start, $timeline-bar-bg-end);
+  background-image: linear-gradient($timeline-bar-bg-start, $timeline-bar-bg-end);
   
   //decorations
   &:before,
@@ -167,7 +166,7 @@ $timeline-bar-width: 6px;
   
   transform: translate(-50%);
   
-  background-color: $timeline-bar-bg-end;
+  background-repeat: no-repeat;
   border-radius: 50%;
   border: 6px solid #fff;
 }

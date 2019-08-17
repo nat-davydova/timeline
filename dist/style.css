@@ -73,7 +73,7 @@ body a {
   height: 100%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  background-image: linear-gradient(to bottom, #ffce79, #9b74ff);
+  background-image: linear-gradient(#ffce79, #9b74ff);
 }
 .timeline__bar:before, .timeline__bar:after {
   position: absolute;
@@ -112,7 +112,7 @@ body a {
   color: #fff;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
-  background-color: #9b74ff;
+  background-repeat: no-repeat;
   border-radius: 50%;
   border: 6px solid #fff;
 }

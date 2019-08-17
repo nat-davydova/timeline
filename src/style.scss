@@ -266,3 +266,41 @@ $timeline-event-decor-dimensions: 8px;
     box-shadow: -2px 2px 1px 0 rgba(0,0,0,0.08);
   }
 }
+
+$timeline-padding-horz: 15px;
+$timeline-padding-vert: 20px;
+
+.timeline__event-date-time {
+  padding: $timeline-padding-vert $timeline-padding-horz 0;
+  
+  display: flex;
+  margin-bottom: 15px;
+  
+  font: {
+    size: .8rem;
+  }
+  color: rgba($theme-font-color, .7);
+}
+
+.timeline__event-date {
+  margin-right: 10px;
+}
+
+.timeline__event-title {
+  padding: 0 $timeline-padding-horz;
+  margin-bottom: 15px;
+  
+  font: {
+    size: 1.25rem;
+    weight: 600;
+  }
+}
+
+.timeline__event-descr {
+  padding: 0 $timeline-padding-horz $timeline-padding-vert;
+  
+  font: {
+    size: .9rem;
+  }
+  line-height: 1rem;
+}

@@ -179,3 +179,28 @@ body a {
   left: -7px;
   box-shadow: -2px 2px 1px 0 rgba(0, 0, 0, 0.08);
 }
+
+.timeline__event-date-time {
+  padding: 20px 15px 0;
+  display: flex;
+  margin-bottom: 15px;
+  font-size: .8rem;
+  color: rgba(44, 44, 44, 0.7);
+}
+
+.timeline__event-date {
+  margin-right: 10px;
+}
+
+.timeline__event-title {
+  padding: 0 15px;
+  margin-bottom: 15px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.timeline__event-descr {
+  padding: 0 15px 20px;
+  font-size: .9rem;
+  line-height: 1rem;
+}

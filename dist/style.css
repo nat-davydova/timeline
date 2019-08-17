@@ -49,12 +49,39 @@ body a {
 
 .content {
   max-width: 700px;
-  margin: auto;
+  margin: 0 auto 40px;
 }
 
 .content__title {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
+}
+
+.timeline__bar {
+  position: relative;
+  min-height: 500px;
+  width: 6px;
+  margin: auto;
+  background-image: linear-gradient(to bottom, #ffce79, #9b74ff);
+}
+.timeline__bar:before, .timeline__bar:after {
+  position: absolute;
+  left: 50%;
+  display: block;
+  width: 12px;
+  height: 12px;
+  content: '';
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 50%;
+}
+.timeline__bar:before {
+  top: 0;
+  background-color: #ffce79;
+}
+.timeline__bar:after {
+  bottom: 0;
+  background-color: #9b74ff;
 }

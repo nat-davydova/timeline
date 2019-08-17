@@ -98,6 +98,8 @@ body {
 }
 
 //timeline styles
+$tablet-width: 900px;
+$mobile-width: 560px;
 
 $timeline-bar-bg-start: #ffce79;
 $timeline-bar-bg-end: #9b74ff;
@@ -154,17 +156,29 @@ $timeline-bar-width: 6px;
   position: relative;
   
   display: flex;
+  flex-direction: column;
   margin-bottom: 30px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+  }
 }
 
 .timeline__elem--right {
-  justify-content: flex-end;
+  
+   @media (min-width: $tablet-width) {
+    justify-content: flex-end;
+  }
 }
 
 $timeline-date-dimensions: 70px;
 
-.timeline__date {
-  @include position-absolute($top: 50%, $left: 50%);
+.timeline__date { 
+  position: relative;
   
   display: flex;
   flex-direction: column;
@@ -172,14 +186,19 @@ $timeline-date-dimensions: 70px;
   justify-content: center;
   width: $timeline-date-dimensions;
   height: $timeline-date-dimensions;
+  margin: auto;
   
   color: #fff;
-  
-  transform: translate(-50%, -50%);
   
   background-repeat: no-repeat;
   border-radius: 50%;
   border: 6px solid #fff;
+  
+  @media (min-width: $tablet-width) {
+     @include position-absolute($top: 50%, $left: 50%);
+    
+    transform: translate(-50%, -50%);
+  }
 }
 
 .timeline__date-day {
@@ -200,18 +219,30 @@ $timeline-event-decor-dimensions: 8px;
 .timeline__event {
   position: relative;
   
-  width: calc((100% - #{$timeline-date-dimensions} - #{$timeline-event-decor-dimensions} * 4) / 2);
+  width: 90%;
+  margin: 30px auto 0;
 
  box-shadow: 
     0 2px 2px 0 rgba(0,0,0,0.14), 
     0 3px 1px -2px rgba(0,0,0,0.12), 
     0 1px 5px 0 rgba(0,0,0,0.2);
+  
+  background-color: #fff;
+  
+  @media (min-width: $mobile-width) {
+    width: 65%;
+  }
+
+  @media (min-width: $tablet-width) {
+      width: calc((100% - #{$timeline-date-dimensions} - #{$timeline-event-decor-dimensions} * 4) / 2);
+     margin: 0;
+  }
 
   //triangle decoration
   &:before {
     @include position-absolute($top: 50%);
     
-    display: block;
+    display: none;
     width: 0;
     height: 0;
     
@@ -227,13 +258,21 @@ $timeline-event-decor-dimensions: 8px;
   &:after {
     @include position-absolute($top: 50%);
     
-    display: block;
+    display: none;
     width: ($timeline-event-decor-dimensions * 2);
     height: ($timeline-event-decor-dimensions * 2);;
     
     content: '';
     
     transform: translateY(-50%) rotate(45deg);
+  }
+
+  @media (min-width: $tablet-width) {
+
+    &:before,
+    &:after {
+      display: block;
+    }
   }
 }
 

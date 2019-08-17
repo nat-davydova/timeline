@@ -100,7 +100,7 @@ body a {
 .timeline__elem {
   position: relative;
   display: flex;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .timeline__elem--right {
@@ -203,4 +203,22 @@ body a {
   padding: 0 15px 20px;
   font-size: .9rem;
   line-height: 1rem;
+}
+
+.timeline__event-actions {
+  padding: 20px 15px;
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+.timeline__event-action {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  margin-right: 24px;
+  font-size: .9rem;
+  text-transform: uppercase;
+}
+.timeline__event-action:hover {
+  opacity: .4;
 }

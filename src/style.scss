@@ -154,7 +154,7 @@ $timeline-bar-width: 6px;
   position: relative;
   
   display: flex;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .timeline__elem--right {
@@ -303,4 +303,25 @@ $timeline-padding-vert: 20px;
     size: .9rem;
   }
   line-height: 1rem;
+}
+
+.timeline__event-actions {
+  padding: $timeline-padding-vert $timeline-padding-horz;
+  
+  border-top: 1px solid rgba(160,160,160,0.2);
+}
+
+.timeline__event-action {
+  @include transition-mix();
+  
+  margin-right: 24px;
+  
+  font: {
+    size: .9rem;
+  }
+  text-transform: uppercase;
+  
+  &:hover {
+    opacity: .4;
+  }
 }

@@ -148,3 +148,43 @@ $timeline-bar-width: 6px;
     background-color: $timeline-bar-bg-end;
   }
 }
+
+.timeline__elem {
+  position: relative;
+}
+
+.timeline__date {
+  @include position-absolute($top: 50%, $left: 50%);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  
+  color: #fff;
+  
+  transform: translate(-50%);
+  
+  background-color: $timeline-bar-bg-end;
+  border-radius: 50%;
+  border: 6px solid #fff;
+}
+
+.timeline__date-day {
+  font: {
+    size: 1.35rem;
+    weight: 600;
+  }
+}
+
+.timeline__date-month {
+  font: {
+    size: .85rem;
+  }
+}
+
+.timeline__event {
+  width: 45%;
+}
